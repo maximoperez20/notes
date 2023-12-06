@@ -1,0 +1,31 @@
+.header{
+    background-color: rgb(255, 150, 53);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    .flash-sales{
+    text-align: center;
+    background-color: rgb(181, 181, 181);
+    border-bottom: solid 1px rgb(211, 211, 211);
+    }
+    .flash-sales p{
+        margin: 4px 0;
+        font-size: 1em;
+    }
+    
+    .footer{
+        padding-top: 2rem;
+        z-index: 10;
+        bottom: 0;
+        width: 100%;
+        padding-bottom: 2rem;
+        border-top: black 1px solid;
+        text-align: center;
+        background-color: lightgray;
+    }
+    .footer p {
+        color : blue;
+    }
+    .main-content {
+    
+    min-height: 100%;
+    }

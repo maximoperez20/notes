@@ -1,0 +1,30 @@
+.note {
+    border: 1px solid black;
+    border-radius: 5px;
+    min-width: 300px;
+    width: 300px;
+    min-height: 300px;
+    height: 300px;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.note__content {
+    min-height: 105px;
+    height: 105px;
+    max-height: 105px;
+    margin-bottom: 0;
+}
+
+.note-buttons button {
+    margin-right: 0.5rem;
+
+}
+.notes-container{
+    display: inline-flex;
+}

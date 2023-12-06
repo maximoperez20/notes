@@ -1,0 +1,24 @@
+.add-new-note-form{
+border: 1px solid lightgray;
+border-radius: 5px;
+padding: 20px;
+}
+.add-new-note-form input{
+    display: block;
+    width: 100%;
+    margin-bottom:1rem;
+}
+.nav-notes{
+    background:#f3f3e2;
+    padding: 1rem 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+.add-new-note-form button {
+    margin-right: 0.5rem;
+    min-width: 4rem;
+}
+input.colorInput{
+    width: 33%;
+}
