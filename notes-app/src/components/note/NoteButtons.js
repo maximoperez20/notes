@@ -1,29 +1,13 @@
 import "./note.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { removeNote } from "../../services/notesServices";
 import { useState } from "react";
 import ConfirmationDelete from "../delete/ConfirmationDelete";
-import { useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import { queryClient } from "../../util/http";
 import EditNote from "../add-note/EditNote";
 
 const NoteButtons = ({ data }) => {
-  const navigate = useNavigate();
   const [showEditModal, setShowEditModal] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const {
-    mutate,
-    isPending: isMutationPending,
-    isError: isMutationError,
-  } = useMutation({
-    mutationFn: removeNote,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
-      setShowConfirmation(false);
-    },
-  });
 
   const handleShowEdit = () => {
     setShowEditModal(true);
@@ -47,9 +31,7 @@ const NoteButtons = ({ data }) => {
 
       {showConfirmation && (
         <ConfirmationDelete
-          onDelete={() => {
-            mutate({ id: data.id_note });
-          }}
+          id_note={data.id_note}
           onCancel={hideConfirmModal}
         />
       )}

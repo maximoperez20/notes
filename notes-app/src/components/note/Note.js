@@ -30,7 +30,7 @@ const Note = ({ data }) => {
       style={{ backgroundColor: data.color_hex }}
     >
       <h3>{titleText}</h3>
-      <p className="note__content">{contentText}</p>
+      <div className="note__content">{contentText}</div>
       <p> {formattedDate}</p>
       <NoteButtons data={data} />
     </div>

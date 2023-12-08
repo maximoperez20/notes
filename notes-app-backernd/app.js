@@ -1,7 +1,5 @@
 const mysql = require("mysql");
 const express = require("express");
-const fs = require("fs");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 // Init express
@@ -30,15 +28,27 @@ con.connect(function (err) {
 });
 
 app.get("/notes", (req, res) => {
-  con.query(
-    "SELECT notes.id_note, notes.title, notes.content, notes.color_hex, notes.date_add, customers.name, customers.last_name FROM notes INNER JOIN customers ON notes.id_customer = customers.id_customer;",
-    function (err, result) {
+  const sqlQuery =
+    "SELECT notes.id_note, notes.title, notes.content, notes.color_hex, notes.date_add, customers.name, customers.last_name FROM notes INNER JOIN customers ON notes.id_customer = customers.id_customer;";
+
+  con.query(sqlQuery, function (err, result) {
+    if (err) throw err;
+    setTimeout(() => {
+      res.send(result);
+    }, 0);
+  });
+});
+
+app.get("/notes/:id", (req, res) => {
+  if (req.params.id) {
+    const sqlQuery = `SELECT notes.id_note, notes.title, notes.content, notes.color_hex, notes.date_add, customers.name, customers.last_name FROM notes INNER JOIN customers ON notes.id_customer = customers.id_customer WHERE notes.id_note = ${req.params.id};`;
+    con.query(sqlQuery, function (err, result) {
       if (err) throw err;
       setTimeout(() => {
         res.send(result);
       }, 0);
-    }
-  );
+    });
+  }
 });
 
 app.post("/notes/add", (req, res) => {

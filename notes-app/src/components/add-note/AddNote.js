@@ -15,7 +15,7 @@ const AddNote = () => {
     mutationFn: addNote,
     onSuccess: () => {
       navigate("/notes");
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
     },
   });
 
@@ -31,7 +31,7 @@ const AddNote = () => {
           {!isPending && (
             <>
               <button type="submit" className="btn btn-success">
-                Ok
+                Create
               </button>
               <Link to={"../"} type="button" className="btn btn-outline-danger">
                 Cancel

@@ -9,21 +9,17 @@ import LoadingSpinner from "../UI/LoadingSpinner.js";
 
 const Notes = (params) => {
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ["todos"],
+    queryKey: ["notes"],
     queryFn: getAllNotes,
     staleTime: 5000,
   });
 
   return (
     <div className="notes-container">
-      <div className="row">
         {isPending && <LoadingSpinner />}
         {data?.map((item, index) => (
-          <div className="col">
-            <Note key={index} data={item} />
-          </div>
+          <Note key={index} data={item} />
         ))}
-      </div>
     </div>
   );
 };

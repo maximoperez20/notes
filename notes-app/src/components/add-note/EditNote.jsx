@@ -11,7 +11,7 @@ function EditNote({ onHide, data }) {
   const { mutate, isError, isPending } = useMutation({
     mutationFn: editNote,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
       onHide();
       navigate("/notes");
     },
@@ -25,12 +25,17 @@ function EditNote({ onHide, data }) {
     <Modal>
       <h2 className="text-center">Edit a note</h2>
       <NoteForm inputData={data} onSubmit={handleSubmit}>
-        <button className="btn btn-waring" onClick={handleSubmit}>
-          Submit
-        </button>
-        <button className="btn btn-secondary" onClick={onHide}>
-          Cancel
-        </button>
+        {!isPending && (
+          <>
+            <button className="btn btn-success" onClick={handleSubmit}>
+              Edit
+            </button>
+            <button className="btn btn-secondary" onClick={onHide}>
+              Cancel
+            </button>
+          </>
+        )}
+        {isPending && <p>Submitting changes...</p>}
       </NoteForm>
     </Modal>
   );
