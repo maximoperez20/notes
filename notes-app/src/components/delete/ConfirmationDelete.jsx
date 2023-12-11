@@ -4,9 +4,10 @@ import Modal from "../UI/Modal";
 import { queryClient } from "../../util/http";
 import { useMutation } from "@tanstack/react-query";
 import { removeNote } from "../../services/notesServices";
+import ErrorBlock from "../UI/ErrorBlock";
 
 function ConfirmationDelete({ onCancel, id_note }) {
-  const { mutate, isPending, isError } = useMutation({
+  const { mutate, isPending, isError, error } = useMutation({
     mutationFn: removeNote,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
@@ -36,6 +37,7 @@ function ConfirmationDelete({ onCancel, id_note }) {
             </>
           )}
           {isPending && <p>Deleting data...</p>}
+          {isError && <ErrorBlock title={"An error occured on delete"} message={error.message}/>}
         </div>
       </div>
     </Modal>

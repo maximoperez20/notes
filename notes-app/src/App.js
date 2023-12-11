@@ -11,6 +11,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 
 import Home from "./pages/Home";
 import AddNote from "./components/add-note/AddNote";
+import NoteInfo from "./components/note/NoteInfo";
 
 const router = createBrowserRouter([
   {
@@ -20,16 +21,11 @@ const router = createBrowserRouter([
   {
     path: "notes",
     element: <Home />,
-    children: [
-      { path: "add", element: <AddNote /> },
-      {
-        path: ":noteId",
-        children: [
-          { index: true },
-          { path: "edit", element: <p>edit note</p> },
-        ],
-      },
-    ],
+    children: [{ path: "add", element: <AddNote /> }],
+  },
+  {
+    path: "notes/:noteId",
+    children: [{ index: true, element: <NoteInfo /> }],
   },
 ]);
 function App() {

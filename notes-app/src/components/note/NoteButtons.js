@@ -9,15 +9,19 @@ const NoteButtons = ({ data }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  const handleShowEdit = () => {
+  const handleButtonsClick = (event) => {
+    event.stopPropagation();
+  }
+  const handleShowEdit = (event) => {
     setShowEditModal(true);
   };
 
-  const handleHideEdit = () => {
+  const handleHideEdit = (event) => {
     setShowEditModal(false);
   };
 
-  const showConfirmModal = () => {
+  const showConfirmModal = (event) => {
+    event.preventDefault();
     setShowConfirmation(true);
   };
 
@@ -26,8 +30,10 @@ const NoteButtons = ({ data }) => {
   };
 
   return (
-    <div className="note-buttons">
-      {showEditModal && <EditNote data={data} onHide={handleHideEdit} />}
+    <div className="note-buttons" onClick={handleButtonsClick}>
+      {showEditModal && (
+        <EditNote data={data} onHide={handleHideEdit} />
+      )}
 
       {showConfirmation && (
         <ConfirmationDelete

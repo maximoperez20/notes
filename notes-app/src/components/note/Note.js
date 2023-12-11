@@ -1,6 +1,8 @@
+import { Link, useNavigate } from "react-router-dom";
 import "./note.css";
 import NoteButtons from "./NoteButtons";
 const Note = ({ data }) => {
+  const navigate = useNavigate();
   const author = data.name + " " + data.last_name;
   var contentText;
   var titleText;
@@ -23,11 +25,17 @@ const Note = ({ data }) => {
     day: "numeric",
   });
 
+  const handleNoteClick = (event) => {
+    navigate("/notes/" + data.id_note);
+    event.stopPropagation();
+  };
+
   return (
     <div
       className="note"
       id={data.id_note}
       style={{ backgroundColor: data.color_hex }}
+      onClick={handleNoteClick}
     >
       <h3>{titleText}</h3>
       <div className="note__content">{contentText}</div>

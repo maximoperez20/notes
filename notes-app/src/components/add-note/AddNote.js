@@ -7,11 +7,12 @@ import Modal from "./../UI/Modal";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../../util/http";
+import ErrorBlock from "../UI/ErrorBlock";
 
 const AddNote = () => {
   const navigate = useNavigate();
 
-  const { mutate, isPending, isError } = useMutation({
+  const { mutate, isPending, isError, error } = useMutation({
     mutationFn: addNote,
     onSuccess: () => {
       navigate("/notes");
@@ -39,6 +40,7 @@ const AddNote = () => {
             </>
           )}
           {isPending && <p> Creating new note... </p>}
+          {isError && <ErrorBlock title={"An error occured while creating a note"} message={error.message}/>}
         </NoteForm>
       </Modal>
     </div>

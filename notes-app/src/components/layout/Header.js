@@ -14,7 +14,7 @@ function Header() {
     <div className="header">
       <Navbar expand="lg">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand>
             <img src="./img/notes-logo.png" alt="" height="80px" width="80px" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

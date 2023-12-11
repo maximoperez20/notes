@@ -35,7 +35,7 @@ app.get("/notes", (req, res) => {
     if (err) throw err;
     setTimeout(() => {
       res.send(result);
-    }, 0);
+    }, 1000);
   });
 });
 
@@ -45,8 +45,8 @@ app.get("/notes/:id", (req, res) => {
     con.query(sqlQuery, function (err, result) {
       if (err) throw err;
       setTimeout(() => {
-        res.send(result);
-      }, 0);
+        res.send(result[0]);
+      }, 1000);
     });
   }
 });

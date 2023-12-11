@@ -3,6 +3,12 @@ export async function getAllNotes() {
   return await response.json();
 }
 
+export async function getNoteById(id) {
+  const response = await fetch("http://localhost:5000/notes/" + id);
+  // console.log("response", await response.json());
+  return await response.json();
+}
+
 //agregar una nota
 export async function addNote(params) {
   const data = JSON.stringify(params);
@@ -33,7 +39,6 @@ export async function removeNote({ id }) {
 
 // Edit a note service
 export async function editNote({ id, data }) {
-  console.log("id", id);
   console.log("data", data);
   const dataFormatted = JSON.stringify(data);
 

@@ -4,11 +4,12 @@ import "./../../services/notesServices.js";
 import { getAllNotes } from "./../../services/notesServices.js";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../UI/LoadingSpinner.js";
+import ErrorBlock from './../UI/ErrorBlock.js'
 
 // const resps = Promise.resolve(getAllNotes());
 
 const Notes = (params) => {
-  const { data, isPending, isError, error } = useQuery({
+  const { data, isPending, isError, error, isFetching } = useQuery({
     queryKey: ["notes"],
     queryFn: getAllNotes,
     staleTime: 5000,
@@ -16,7 +17,8 @@ const Notes = (params) => {
 
   return (
     <div className="notes-container">
-        {isPending && <LoadingSpinner />}
+        {isFetching && <LoadingSpinner />}
+        {isError && <ErrorBlock title={"Failed to fetch notes"} message={error.message} />}
         {data?.map((item, index) => (
           <Note key={index} data={item} />
         ))}

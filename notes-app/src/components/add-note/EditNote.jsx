@@ -5,10 +5,11 @@ import { editNote } from "../../services/notesServices";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { queryClient } from "../../util/http";
+import ErrorBlock from "../UI/ErrorBlock";
 
 function EditNote({ onHide, data }) {
   const navigate = useNavigate();
-  const { mutate, isError, isPending } = useMutation({
+  const { mutate, isError, error, isPending } = useMutation({
     mutationFn: editNote,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
@@ -27,7 +28,7 @@ function EditNote({ onHide, data }) {
       <NoteForm inputData={data} onSubmit={handleSubmit}>
         {!isPending && (
           <>
-            <button className="btn btn-success" onClick={handleSubmit}>
+            <button className="btn btn-success" type="submit">
               Edit
             </button>
             <button className="btn btn-secondary" onClick={onHide}>
@@ -36,6 +37,7 @@ function EditNote({ onHide, data }) {
           </>
         )}
         {isPending && <p>Submitting changes...</p>}
+        {isError && <ErrorBlock title={"An error occured on edit"} message={error.message}/>}
       </NoteForm>
     </Modal>
   );

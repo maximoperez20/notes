@@ -23,9 +23,9 @@ const NoteForm = ({ children, onSubmit, inputData }) => {
     <div className="">
       <form className="add-new-note-form" onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
-        <input name="title" defaultValue={inputData?.title}></input>
+        <input required name="title" defaultValue={inputData?.title}></input>
         <label htmlFor="content">Content</label>
-        <input name="content" defaultValue={inputData?.content}></input>
+        <input required name="content" defaultValue={inputData?.content}></input>
         <label htmlFor="color">Color</label>
         <ColorPicker
           selectedColor={selectedColor}
